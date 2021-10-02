@@ -1,0 +1,238 @@
+<app-navigation-bar></app-navigation-bar>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+<div class="abc">
+<div class="register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        <a class="btn btn-primary"routerLink="/employerLogin">Login</a>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="background-color: #2c2c54;">
+                            <li class="nav-item">
+                                <a class="nav-link " id="home-tab" data-toggle="tab" routerLink='/jobseekerRegister' role="tab" aria-controls="home" aria-selected="true">Job Seeker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" id="profile-tab" data-toggle="tab" routerLink='/employerRegister' role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            
+                            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <h3  class="register-heading">Apply as a Hirer</h3>
+                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                               <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <select class="form-control" name="accounttype" #accounttype="ngModel" [(ngModel)]="registerUserData.accounttype" [ngClass]="{ 'is-invalid': f.submitted && accounttype.invalid }" required>
+                                            <option  selected="selected" disabled>Account Type</option>
+                                            <option >Employers/Corporates</option>
+                                            <option >Manpower Consultants</option>
+                                            <option >Colleges/Universities</option>
+                                            <option >Training Institutes</option>
+                                            <option >Educational Consultants</option>
+                                            <option >Ad Agencies/Affiliates</option>
+                                            <option >JobSeeker</option>
+                                            <option >Others</option>
+                                            </select>	
+                                            <div *ngIf="f.submitted && accounttype.invalid" class="invalid-feedback">
+                                                <div *ngIf="accounttype.errors?.required">Accounttype is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Company Name *" name="cname" #cname="ngModel" [(ngModel)]="registerUserData.cname" [ngClass]="{ 'is-invalid': f.submitted && cname.invalid }" required>
+                                            <div *ngIf="f.submitted && cname.invalid" class="invalid-feedback">
+                                                <div *ngIf="cname.errors?.required">Company Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Contact Person Name *" name="cpname" #cpname="ngModel" [(ngModel)]="registerUserData.cpname" [ngClass]="{ 'is-invalid': f.submitted && cpname.invalid }" required>
+                                            <div *ngIf="f.submitted && cpname.invalid" class="invalid-feedback">
+                                                <div *ngIf="cpname.errors?.required">Contact Person Name is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-control"  [(ngModel)]="registerUserData.email" placeholder="Email*" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                <div *ngIf="email.errors?.required">Email is required</div>
+                                                <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="phone" [pattern]="mobNumberPattern" class="form-control" id="phone" #phone="ngModel" placeholder="Your Phone *" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" [(ngModel)]="registerUserData.phone"required />
+                                            <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+                                                <div *ngIf="phone.errors?.required">phone is required</div>
+                                                <div *ngIf="phone.errors?.pattern">Phone Number must be a valid.(10 digit)</div>
+                                            </div>
+                                        </div>
+
+                                      <!--  <div class="form-group">
+                                            <input type="text"  class="form-control" placeholder="City *" name="city" #city="ngModel" [(ngModel)]="registerUserData.city" [ngClass]="{ 'is-invalid': f.submitted && city.invalid }" required>
+                                            <div *ngIf="f.submitted && city.invalid" class="invalid-feedback">
+                                                <div *ngIf="city.errors?.required">City is required</div>
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <select  #country="ngModel" [(ngModel)]="registerUserData.country" name="country" (change)="onSelectCountry($any($event.target).value)" class="form-control input-lg" id="country">
+                                                <option selected="selected" disabled >Select Country</option>
+                                                <option *ngFor="let country of countriesList" value= {{country.name}}>{{country.name}}</option>
+                                                </select>  
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <select *ngIf="states"  name="state" #state="ngModel" [(ngModel)]="registerUserData.state" 
+                                            (change)="onSelectState($any($event.target).value)" class="form-control input-lg" id="state">
+                                                <option selected="selected" disabled >Select State</option>
+                                              <option *ngFor="let state of states" value= {{state.name}}>{{state.name}}</option>
+                                            </select>  
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <select class="form-control input-lg" name="city" #city="ngModel" [(ngModel)]="registerUserData.city"  id="city">
+                                                <option selected="selected" disabled >Select City</option>
+                                                <option *ngFor="let city of cities" value= {{city.name}}>{{city.name}}</option>
+                                            </select> 
+                                          </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control" [(ngModel)]="registerUserData.password" placeholder="Password*" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
+                                            <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                                                <div *ngIf="password.errors?.required">Password is required</div>
+                                                <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="registerUserData.confirmPassword" placeholder="ConfirmPassword*" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+                                            <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                                                <div *ngIf="confirmPassword.errors?.required">Confirm Password is required</div>
+                                                <div *ngIf="confirmPassword.errors?.mustMatch">Passwords must match</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <select  class="form-control" name="designation" #designation="ngModel" value="Designation" [(ngModel)]="registerUserData.designation" [ngClass]="{ 'is-invalid': f.submitted && designation.invalid }" required>
+                                                <option selected="selected" disabled>Designation</option>
+                                                <option >Accounts - Finance</option>
+                                                <option >Assistant Director – HR / Talent Acquisition</option>
+                                                <option >Assistant Manager HR</option>
+                                                <option >Associate Director HR</option>
+                                                <option >Asst Manager Recruitment</option>
+                                                <option >Asst. General Manager</option>
+                                                <option >BDM</option>
+                                                <option >Business head</option>
+                                                <option >Campus - Recruiter</option>
+                                                <option >CEO</option>
+                                                <option >Chairman</option>
+                                                <option >Co-Founder</option>
+                                                <option >COO</option>
+                                                <option >Corporate HR</option>
+                                                <option >Deputy General Manager - HR</option>
+                                                <option >Director</option>
+                                                <option >Director - HR</option>
+                                                <option >Founder</option>
+                                                <option >General Manager - (GM) HR</option>
+                                                <option >General Manager (GM)</option>
+                                                <option >Head - Talent Acquisition</option>
+                                                <option >Head HR</option>
+                                                <option >Head Talent Acquisition</option>
+                                                <option >HR Admin</option>
+                                                <option >HR Business Partner</option>
+                                                <option >HR Executive</option>
+                                                <option >HR Lead</option>
+                                                <option >HR Leader</option>
+                                                <option >HR Officer</option>
+                                                <option >HR Professional</option>
+                                                <option >HR- Recruiter</option>
+                                                <option >HR Specialist</option>
+                                                <option >IT Director</option>
+                                                <option >IT Recruiter</option>
+                                                <option >Manager - Campus Recruitment</option>
+                                                <option >Manager - HR</option>
+                                                <option >Manager - Recruitment</option>
+                                                <option >Manager - Talent Acquisition</option>
+                                                <option >Manager - University Relations</option>
+                                                <option >Manager-Corp HR</option>
+                                                <option >Managing Director (MD)</option>
+                                                <option >Managing Partner</option>
+                                                <option >Marketing Manager</option>
+                                                <option >Placement Officer (TPO)</option>
+                                                <option >President HR</option>
+                                                <option >Procurement</option>
+                                                <option >Product Manager</option>
+                                                <option >Receptionist</option>
+                                                <option >Recruiter</option>
+                                                <option >Recruitment Associate</option>
+                                                <option >Recruitment Consultant</option>
+                                                <option >Recruitment Executive</option>
+                                                <option >Recruitment Lead</option>
+                                                <option >Recruitment Specialist</option>
+                                                <option >Regional Director</option>
+                                                <option >Regional Manager HR</option>
+                                                <option >Resource Manager</option>
+                                                <option >Senior Executive - HR</option>
+                                                <option >Senior Executive - Talent Acquisition</option>
+                                                <option >Senior Manager - HR</option>
+                                                <option >Senior Manager - Recruitment</option>
+                                                <option >Senior Manager - Talent Acquisition</option>
+                                                <option >Senior VP- HR</option>
+                                                <option >Sr.Technical Recruiter</option>
+                                                <option >Technical Recruiter</option>
+                                                <option >Training manager</option>
+                                                <option >University Relations</option>
+                                                <option >Vice President (VP)</option>
+                                                <option >Vice President (VP)- HR</option>
+                                                <option  >Others</option>
+                                                </select>
+                                                <div *ngIf="f.submitted && designation.invalid" class="invalid-feedback">
+                                                    <div *ngIf="designation.errors?.required">Designation is required</div>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <textarea rows="3" cols="10" style="color:gray;" class="form-control" placeholder="Give a brief about your Entry Level Hiring Requirements here." name="requirements" #requirements="ngModel" [(ngModel)]="registerUserData.requirements" name="clientrequirements"[ngClass]="{ 'is-invalid': f.submitted && requirements.invalid }" required></textarea>
+                                            
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" #question="ngModel" [(ngModel)]="registerUserData.question" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required>
+                                                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is your Favorite Food?</option>
+                                                <option>What is your Favorite Movie?</option>
+                                                <option>What is Your Nick Name?</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                            <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                                <div *ngIf="question.errors?.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Your Answer *" name="answer" id="answer" #answer="ngModel" [(ngModel)]="registerUserData.answer" [ngClass]="{ 'is-invalid': f.submitted && answer.invalid }" required/>
+                                            <div *ngIf="f.submitted && answer.invalid" class="invalid-feedback">
+                                                <div *ngIf="answer.errors?.required">Answer is required</div>
+                                            </div>
+                                        </div>
+                                        <input type="reset" class="btnRegister"  value="Cancel"/>
+                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                        
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <app-footer></app-footer>

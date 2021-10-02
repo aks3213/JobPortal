@@ -1,0 +1,12 @@
+
+.center{
+    text-align: center;
+}
+.detail{
+    background: -webkit-linear-gradient(left, #022a54, #398ca3);
+    margin: 130px 440px;
+    padding: 50px 140px;
+    border-radius: 30px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}

@@ -1,0 +1,95 @@
+
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-2 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-10 register-right" >
+        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Employes</h3>
+                                
+                                
+                                <div class="row register-form">
+                                    <div class="col-md-6" *ngFor="let user of userdata">
+                                        
+                                        <div class="card" style="width: auto; height: auto;"  >
+                                            
+                                            <div class="card-body" >
+                                              
+                                              <h5 class="card-title"><b>{{user.firstname}} {{user.lastname}}</b></h5>
+                                              
+                                              <p class="card-text"><b>Email: </b>{{user.email}}</p>
+                                              <p class="card-text">Gender: {{user.gender}} &nbsp;&nbsp; Degree: {{user.study}}</p>
+                                              <p class="card-text">Contact No: {{user.phone}}</p>
+                                              <a  class="btn btn-primary text-white" (click)="viewResume(user._id)"  >View Resume</a>&nbsp;
+                                              <a  class="btn btn-primary text-white" (click)="viewJobs('custom-modal-1',user.email)"  >Job Details</a>&nbsp;
+                                              <a  class="btn btn-secondary" [routerLink]="['/Hire',user.email]">Hire</a>
+                                            </div>
+
+                                            <jw-modal id="custom-modal-1">
+                                                <div class="card-body" *ngFor="let job of jobsdata">
+
+                                                  
+                                                  <p class="card-text" *ngIf="job.current==1">Currently Doing Job</p>
+                                                  <p class="card-text" *ngIf="job.current==2">Previous Job</p>
+                                                  <a  class="btn btn-primary btn-sm text-white" (click)="GetJobs('custom-modal-2',job.job)">Job Details</a>
+
+                                                </div>
+                                                <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="true"></ngb-rating>({{currentRate1}})
+                                                  <button (click)="closeModal('custom-modal-1');" class="btn btn-danger btn-sm text-white">Close</button>
+                                              </jw-modal>
+
+                                              <jw-modal id="custom-modal-2">
+                                                <div class="card-body" *ngFor="let job of onejobsdata">
+                                                  <h5 class="card-title"><b>{{job.title}}</b></h5>
+                                                  <p class="card-text"><b>Company Name:</b>{{job.cname}}</p>
+                                                <p class="card-text"><b>Contact Person Name:</b>{{job.cpname}}</p>
+                                                <p class="card-text">Minqualification: {{job.minqualification}}</p>
+                                                <p class="card-text">Minexperience: {{job.minexperience}}</p>
+                                                <p class="card-text">salary: {{job.minsalary}}-{{job.maxsalary}}</p>
+                                                <p class="card-text">Location: {{job.location}}</p>
+                                                <p class="card-text">For any Question: {{job.phone}}</p>
+  
+                                                <p class="card-text">{{job.description}}</p>
+                                                <p class="card-text">{{job.longdescription}}</p>
+                                                <p class="card-text"><b>Vacancy </b>{{job.vacancy}}</p>
+                                          
+                                                    <button (click)="closeModal('custom-modal-2');" class="btn btn-danger btn-sm text-white">Close</button>
+                                                  </div>
+                                                
+                                              </jw-modal>
+
+                                          </div> <br>
+                                        
+                                </div>
+
+                            </div>
+                               
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div></div>
+            </body>
+            <app-footer></app-footer>

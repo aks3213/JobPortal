@@ -1,0 +1,398 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+    <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit()">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" *ngFor="let resume of resumesdata">
+                                <h3 class="register-heading">Create Resume</h3>
+                                
+                                <div class="row register-form" *ngIf="!valid" >
+                                    <div class="col-md-6">
+                                        <h3 class="card-title">Personal Details</h3>
+                                        <div class="form-group">
+                                            <label for="name">Full Name</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="{{resume.Name}}" placeholder="{{resume.Name}}"
+                                                
+                                                [(ngModel)]="user.Name" #FullName="ngModel"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Current City</label>
+                                            <input type="text" class="form-control" name="currentcity" id="currentcity" row="3" placeholder="{{resume.CurrentCity}}"
+                                                
+                                                [(ngModel)]="user.CurrentCity" #CC="ngModel"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address"> 2nd City</label>
+                                            <input type="text" class="form-control" name="current2ndcity" id="current2ndcity" row="3" placeholder="{{resume.Current2ndCity}}"
+                                                
+                                                [(ngModel)]="user.Current2ndCity" #C2C="ngModel"  />
+                                        </div>
+                                        <br>
+                                        <h3 class="card-title">Secondary (X)</h3>
+                                        <div class="form-group">
+                                            <label for="name">Year of Completion</label>
+                                            <input type="year" min="1900" max="2099" step="1"  class="form-control" name="name" id="name" placeholder="{{resume.YearOfCompletionItermediate}}"
+                                                
+                                                [(ngModel)]="user.YearOfCompletionItermediate" #YearOfCompletionItermediate="ngModel"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="board">Board</label>
+                                            <input type="text" class="form-control" name="currentcity" id="currentcity" row="3" placeholder="{{resume.BoardItermediate}}"
+                                                
+                                                [(ngModel)]="user.BoardItermediate" #Address="ngModel"  />
+                                        </div>
+                                        <br>
+                                        <h3 class="card-title">Senior Secondary (XII)</h3>
+                                        <div class="form-group">
+                                            <label for="Stream">Stream</label>
+                                            <input type="Stream" class="form-control" name="Stream" id="Stream" placeholder="{{resume.StreamMatriculation}}"
+                                                
+                                                [(ngModel)]="user.StreamMatriculation" #CustName="ngModel"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Year of Completion</label>
+                                            <input type="year" min="1900" max="2099" step="1"  class="form-control" name="name" id="name"
+                                               placeholder="{{resume.YearOfCompletionItermediate}}"
+                                                [(ngModel)]="user.YearOfCompletionItermediate" #CustName="ngModel"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="BoardMatriculation">Board</label>
+                                            <input type="text" class="form-control" name="BoardMatriculation" id="BoardMatriculation" row="3"
+                                                placeholder="{{resume.BoardMatriculation}}"
+                                                [(ngModel)]="user.BoardMatriculation" #Address="ngModel"  />
+                                        </div>
+                                        <br>
+
+                                        <br> 
+                                        <h3 class="card-title">Graduation details</h3>
+                                        <div class="form-group">
+                                                <label>Graduation status :</label>&nbsp;<br>
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="Graduationstatus" checked value="Pursuing" 
+                                                    id="Graduationstatus" checked #Graduationstatus="ngModel" placeholder="{{resume.Graduationstatus}}"
+                                                     
+                                                    [(ngModel)]="user.Graduationstatus"  >
+                                                    <span> Pursuing</span> 
+                                                </label> &nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="Graduationstatus" value="Completed" 
+                                                    id="Graduationstatus" #Graduationstatus="ngModel" placeholder="{{resume.Graduationstatus}}"
+                                                    
+                                                    [(ngModel)]="user.Graduationstatus"  >
+                                                    <span> Completed</span> 
+                                                </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="College">College</label>
+                                            <input type="text" class="form-control" name="College" id="College" row="3"
+                                                
+                                                [(ngModel)]="user.College" #College="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Startyear">Start year</label>
+                                            <input type="year" class="form-control" name="Startyear" id="Startyear" row="3"
+                                                placeholder="{{resume.Startyear}}"
+                                                [(ngModel)]="user.Startyear" #Startyear="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Performance">Performance</label>
+                                            <input type="text" class="form-control" name="Performance" id="Performance" row="3"
+                                                placeholder="{{resume.Performance}}"
+                                                [(ngModel)]="user.Performance" #Performance="ngModel"  />
+                                        </div>
+
+                                        
+                                        <br>
+                                        <h3 class="card-title">Job details</h3>
+                                        <div class="form-group">
+                                            <label for="Profile">Profile</label>
+                                            <input type="text" class="form-control" name="Profile" id="Profile" row="3"
+                                                placeholder="{{resume.Profile}}"
+                                                [(ngModel)]="user.Profile" #Profile="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Startdate">Start date</label>
+                                            <input type="date" class="form-control" name="Startdate" id="Startdate" row="3"
+                                                placeholder="{{resume.Startdate}}"
+                                                [(ngModel)]="user.Startdate" #Startdate="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Description">Description</label>
+                                            <input type="text" class="form-control" name="Description" id="Description" row="3"
+                                               placeholder="{{resume.Description}}"
+                                                [(ngModel)]="user.Description" #Description="ngModel"  />
+                                        </div>
+
+                                        <br>
+                                        <h3 class="card-title">Internship  details</h3>
+                                        <div class="form-group">
+                                            <label for="iProfile">Profile</label>
+                                            <input type="text" class="form-control" name="iProfile" id="iProfile" row="3"
+                                                placeholder="{{resume.iProfile}}"
+                                                [(ngModel)]="user.iProfile" #iProfile="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="iStartdate">Start date</label>
+                                            <input type="date" class="form-control" name="iStartdate" id="iStartdate" row="3"
+                                                placeholder="{{resume.iStartdate}}"
+                                                [(ngModel)]="user.iStartdate" #iStartdate="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="iDescription">Description</label>
+                                            <input type="text" class="form-control" name="iDescription" id="iDescription" row="3"
+                                                placeholder="{{resume.iDescription}}"
+                                                [(ngModel)]="user.iDescription" #iDescription="ngModel"  />
+                                        </div>
+
+                                        <br>
+                                        <h3 class="card-title">Project details</h3>
+                                        <div class="form-group">
+                                            <label for="Title">Title</label>
+                                            <input type="text" class="form-control" name="Title" id="Title" row="3"
+                                                placeholder="{{resume.Title}}"
+                                                [(ngModel)]="user.Title" #Title="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Startdate">Start date</label>
+                                            <input type="date" class="form-control" name="Startdate" id="Startdate" row="3"
+                                                placeholder="{{resume.Startdate}}" 
+                                                [(ngModel)]="user.Startdate" #Startdate="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Projectlink">Project link</label>
+                                            <input type="text" class="form-control" name="Projectlink" id="Projectlink" row="3"
+                                               placeholder="{{resume.Projectlink}}"
+                                                [(ngModel)]="user.Projectlink" #Projectlink="ngModel"  />
+                                        </div>
+
+                                        
+                                        <br>
+                                        <h3 class="card-title">Skills</h3>
+                                        <div class="form-group">
+                                            <label for="Skill1">Skill 1</label>
+                                            <input type="text" class="form-control" name="Skill1" id="Skill1" row="3"
+                                                placeholder="{{resume.Skill1}}"
+                                                [(ngModel)]="user.Skill1" #Skill1="ngModel"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Skill2">Skill 2</label>
+                                            <input type="text" class="form-control" name="Skill2" id="Skill2" row="3"
+                                            placeholder="{{resume.Skill2}}"
+                                                [(ngModel)]="user.Skill2" #Skill2="ngModel" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Skill3">Skill 3</label>
+                                            <input type="text" class="form-control" name="Skill3" id="Skill3" row="3"
+                                            placeholder="{{resume.Skill3}}"
+                                                [(ngModel)]="user.Skill3" #Skill3="ngModel" />
+                                        </div>
+
+                                        <button  class="btn btn-primary btn-lg">Submit</button> &nbsp; &nbsp; 
+                                        <button type="reset" class="btn btn-secondary btn-lg ">Reset</button>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="col-md-6">
+                                        <br><br>
+                                        <div class="form-group">
+                                            <label for="email">Email ID</label>
+                                            <input type="email" class="form-control" name="email" id="email" #email="ngModel"
+                                             placeholder="{{resume.email}}"
+                                                [(ngModel)]="user.email" #email  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contactNo">Contact No.</label>
+                                            <input type="text" length="10" class="form-control" name="contactNo" id="contactNo"
+                                                placeholder="{{resume.contactNo}}"
+                                                [(ngModel)]="user.contactNo" #ContactNo="ngModel"  >
+                                        </div>
+                                        <br><br><br><br><br><br>
+                                        <h3 class="card-title"></h3>
+                                        <div class="form-group">
+                                            <label for="performance">Performance</label>
+                                            <input type="text" class="form-control" name="Performance" id="Performance" row="3"
+                                              placeholder="{{resume.PerformanceItermediate}}"
+                                                [(ngModel)]="user.PerformanceItermediate" #Address="ngModel"  />
+                                                
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SchoolNameItermediate">Name of School</label>
+                                            <input type="text" class="form-control" name="SchoolNameItermediate" 
+                                            id="SchoolNameItermediate" #SchoolNameItermediate="ngModel"
+                                                [(ngModel)]="user.SchoolNameItermediate" placeholder="{{resume.SchoolNameItermediate}}"
+                                                  >
+                                        </div>
+
+                                        <br><br><br><br>
+                                        <h3 class="card-title"></h3>
+                                        <div class="form-group">
+                                            <label for="PerformanceMatriculation">Performance</label>
+                                            <input type="text" class="form-control" name="PerformanceMatriculation" id="PerformanceMatriculation" row="3"
+                                                placeholder="{{resume.PerformanceMatriculation}}"
+                                                [(ngModel)]="user.PerformanceMatriculation" #Address="ngModel"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SchoolNameItermediate">Name of School</label>
+                                            <input type="text" class="form-control" name="SchoolNameMatriculation" 
+                                            id="SchoolNameMatriculation" #SchoolNameItermediate="ngModel"
+                                                [(ngModel)]="user.SchoolNameMatriculation" placeholder="{{resume.SchoolNameMatriculation}}"
+                                                  >
+                                        </div> 
+
+
+                                        <br><br><br><br><br><br><br><br><br>
+                                        <h3 class="card-title">&nbsp;</h3>
+                                        
+                                        <div class="form-group">
+                                            <label for="Degree">Degree</label>
+                                            <input type="text" class="form-control" name="Degree" id="Degree" row="3"
+                                               placeholder="{{resume.Degree}}"
+                                                [(ngModel)]="user.Degree" #Degree="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Endyear">End year</label>
+                                            <input type="year" class="form-control" name="Endyear" id="Endyear" row="3"
+                                                placeholder="{{resume.Endyear}}"
+                                                [(ngModel)]="user.Endyear" #Endyear="ngModel"  />
+                                        </div>
+
+
+                                        <br><br><br><br><br><br>
+                                        <h3 class="card-title"></h3>
+
+                                        <div class="form-group">
+                                            <label for="Organization">Organization</label>
+                                            <input type="text" class="form-control" name="Organization" id="Organization" row="3"
+                                                placeholder="{{resume.Organization}}"
+                                                [(ngModel)]="user.Organization" #Organization="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Enddate">End date</label>
+                                            <input type="date" class="form-control" name="Enddate" id="Enddate" row="3"
+                                                [(ngModel)]="user.Enddate" #Enddate="ngModel" />
+                                            &nbsp;<input type="checkbox" name="Currently" placeholder="{{resume.Currently}}"
+                                            [(ngModel)]="user.Currently" #Currently="ngModel" id="">
+                                            <span> Currently working here</span>
+                                        </div>
+
+                                        <br><br><br><br><br>
+                                        <h3 class="card-title"></h3>
+
+                                        <div class="form-group">
+                                            <label for="iOrganization">Organization</label>
+                                            <input type="text" class="form-control" name="iOrganization" id="iOrganization" row="3"
+                                                
+                                                placeholder="{{resume.iOrganization}}"
+                                                [(ngModel)]="user.iOrganization" #iOrganization="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="iEnddate">End date</label>
+                                            <input type="date" class="form-control" name="iEnddate" id="iEnddate" row="3"
+                                                [(ngModel)]="user.iEnddate" placeholder="{{resume.iEnddate}}" #iEnddate="ngModel" />
+                                            &nbsp;<input type="checkbox" name="iCurrently" [(ngModel)]="user.iCurrently" #iCurrently="ngModel" id="">
+                                            <span> Currently working here</span>
+                                        </div>
+
+                                        <br><br><br><br><br>
+                                        <h3 class="card-title"></h3>
+                                        <div class="form-group">
+                                            <label for="pDescription">Description</label>
+                                            <input type="text" class="form-control" name="pDescription" id="pDescription" row="3"
+                                                placeholder="{{resume.pDescription}}"
+                                                [(ngModel)]="user.pDescription" #pDescription="ngModel"  />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Endmonth">End date</label>
+                                            <input type="date" class="form-control" name="Endmonth" id="Endmonth" row="3"
+                                                [(ngModel)]="user.Endmonth" #Endmonth="ngModel" placeholder="{{resume.Endmonth}}">
+                                            &nbsp;<input type="checkbox" name="pCurrently" [(ngModel)]="user.pCurrently" #pCurrently="ngModel" id="">
+                                            <span> Currently ongoing</span>
+                                        </div>
+
+
+                                        <br><br><br><br>
+                                        <h3 class="card-title"> </h3>
+                                        
+                                        <div class="form-group">
+                                            <label for="Endmonth">How would you rate yourself on this skill?</label>
+                                            <select class="form-control" name="question" id="question" #question="ngModel"  [(ngModel)]="user.level1" 
+                                              >
+                                                <option class="hidden" selected disabled>How would you rate yourself on this skill?</option>
+                                                <option>Beginner</option>
+                                                <option>Intermediate</option>
+                                                <option>Advanced</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="level2"> </label>
+                                            <select class="form-control" name="question" id="question"  #question="ngModel" [(ngModel)]="user.level2" >
+                                                <option class="hidden" selected disabled>How would you rate yourself on this skill?</option>
+                                                <option>Beginner</option>
+                                                <option>Intermediate</option>
+                                                <option>Advanced</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="level3"> </label>
+                                            <select class="form-control" name="question" id="question"  #question="ngModel" [(ngModel)]="user.level3" >
+                                                <option class="hidden" selected disabled>How would you rate yourself on this skill?</option>
+                                                <option>Beginner</option>
+                                                <option>Intermediate</option>
+                                                <option>Advanced</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+
+                        
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                </form>
+            </div>
+            </div>
+            </body>
+            <app-footer></app-footer>

@@ -1,0 +1,78 @@
+<app-navigation-bar></app-navigation-bar>
+
+<body>
+
+   <div class="table-responsive-lg">
+      <table class="table table-hover ">
+         <thead class="thead-dark">
+            <tr>
+               <th>Account Type</th>
+               <th>
+                  Company Name
+               </th>
+               <th>
+                  Contact Person Name
+               </th>
+               <th>
+                  Email
+               </th>
+               <th>
+                  Contact Person Phone No.
+               </th>
+               <th>
+                  Job Location
+               </th>
+
+               <th>
+                  Designation
+               </th>
+               <th>
+                  Requirements
+               </th>
+               
+               <th>
+
+               </th>
+            </tr>
+         </thead>
+         <tr *ngFor="let user of userdata">
+
+            <td>{{user.accounttype}}</td>
+
+            <td> {{user.cname}} </td>
+
+
+            <td> {{user.cpname}} </td>
+
+
+            <td> {{user.email}} </td>
+
+
+            <td> {{user.phone}} </td>
+
+
+            <td>{{user.country}},{{user.state}} {{user.city}} </td>
+
+            <td> {{user.designation}} </td>
+
+            <td> {{user.requirements}} </td>
+
+           
+
+            <td>
+               <a class="btn btn-danger" (click)="confirmm(user._id)">
+                  Delete
+               </a>
+            </td>
+
+
+         </tr>
+
+
+
+
+      </table>
+   </div>
+
+</body>
+<app-footer></app-footer>

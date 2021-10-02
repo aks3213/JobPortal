@@ -1,0 +1,96 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../../assets/js/jobseekerRegister.js"></script>
+  <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+  <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+
+<body>
+  <div class="abc">
+    <div class="register">
+      <div class="row">
+        <div class="col-md-3 register-left">
+          <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+          <h3>Welcome</h3>
+
+        </div>
+        <div class="col-md-9 register-right">
+
+
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <h3 class="register-heading">Notification</h3><br>
+
+
+              <div class="col-md-9" *ngFor="let user of userdata">
+                <div class="row register-form" *ngIf="user.type=='0'">
+                  <div class="card" style="width: 30rem;">
+
+                    <div class="card-body">
+                      <h5 class="card-title text-danger" *ngIf="user.Answer"><b>Already Accepted</b></h5>
+                      <h5 class="card-title"><b>{{user.jobtitle}}</b></h5>
+
+                      <p class="card-text"><b>Company Name:</b>{{user.cname}}</p>
+                      <p class="card-text"><b>Contact Person Name:</b>{{user.cpname}}</p>
+                      <p class="card-text">{{user.Description}}</p>
+                      <a (click)="accept(user._id,user.email,user.jemail,user.job)" *ngIf="!user.Answer"
+                        class="btn btn-primary text-white">Accept</a> &nbsp;
+                      <a (click)="ViewJob('custom-modal-1',user.job)" class="btn btn-primary text-white">Job Details</a>
+                    </div>
+                    <jw-modal id="custom-modal-1">
+                      <div class="card-body" *ngFor="let job of dummy">
+                        <h5 class="card-title"><b>{{job.title}}</b></h5>
+                        <p class="card-text"><b>Company Name:</b>{{job.cname}}</p>
+                        <p class="card-text"><b>Contact Person Name:</b>{{job.cpname}}</p>
+                        <p class="card-text">Minqualification: {{job.minqualification}}</p>
+                        <p class="card-text">Minexperience: {{job.minexperience}}</p>
+                        <p class="card-text">salary: {{job.minsalary}}-{{job.maxsalary}}</p>
+                        <p class="card-text">Location: {{job.location}}</p>
+                        <p class="card-text">For any Question: {{job.phone}}</p>
+
+                        <p class="card-text">{{job.description}}</p>
+                        <p class="card-text">{{job.longdescription}}</p>
+                        <p class="card-text"><b>Vacancy </b>{{job.vacancy}}</p>
+
+
+
+                        <button (click)="closeModal('custom-modal-1');"
+                          class="btn btn-danger btn-sm text-white">Close</button>
+                      </div>
+
+                    </jw-modal>
+                  </div>
+
+                </div>
+
+
+                <div class="row register-form" *ngIf="user.type=='1'">
+                  <div class="card" style="width: 25rem;">
+
+                    <div class="card-body">
+                      <h5 class="card-title text-danger" *ngIf="user.Answer"><b>Already Accepted</b></h5>
+                      <h5 class="card-title"><b>{{user.jname}}</b></h5>
+                      <p class="card-text">Job: {{user.jobtitle}}</p>
+                      <p class="card-text">{{user.Description}}</p>
+                      <a (click)="acceptApply(user._id,user.email,user.jemail,user.job)" *ngIf="!user.Answer"
+                        class="btn btn-primary text-white">Accept</a> &nbsp;
+                      <a (click)="viewResume(user.uid)" class="btn btn-primary text-white">View Resume</a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<app-footer></app-footer>

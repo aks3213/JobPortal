@@ -1,0 +1,59 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class=" register" >
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading"> Answer here</h3>
+                                
+                                <div class="row register-form" >
+                                    <div class="col-md-9" *ngFor="let user of userdata">
+                                        <form [formGroup]="registerForm" (ngSubmit)="adminfaq(answer.value,id.value)"  >
+                                        <label for=""> <b>Question:</b>  {{user.Question}}</label><br>
+                                        <label for=""> <b>Answer:</b>  {{user.Answer}}</label>
+                                        <div class="form-group">
+                                            <input type="text" formControlName="answer" class="form-control"  placeholder="Enter Answer *"  #answer [ngClass]="{ 'is-invalid':  submitted && f.answer.errors  }" >
+                                            <div *ngIf=" submitted && f.answer.errors " class="invalid-feedback">
+                                                <div *ngIf="f.answer.errors?.required">Subject is required</div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="id" value="{{user._id}}" #id>
+
+                                        <button class="btnRegister" type="reset" (click)="onReset()">Cancel</button> &nbsp;
+                                        <button  class="btnRegister" >Sent</button>
+                                    </form>
+                                    </div>
+                                    
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            </div>
+            </body>
+            <app-footer></app-footer>

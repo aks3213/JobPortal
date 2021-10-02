@@ -1,0 +1,50 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Question & Answer</h3>
+                                
+                                <div class="row register-form" >
+                                    <div class="col-md-9" *ngFor="let user of userdata">
+                                        
+                                        <label for=""> <b>Question:</b>  {{user.Question}}</label><br>
+                                        <label for=""> <b>Answer:</b>  {{user.Answer}}</label><br><br>
+                                        
+
+                                        
+                                    </div>
+                                    
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            </body>
+            <app-footer></app-footer>

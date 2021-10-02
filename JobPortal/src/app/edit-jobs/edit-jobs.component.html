@@ -1,0 +1,123 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                    </div>
+                    <div class="col-md-9 register-right" >
+        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Edit Job</h3>
+                                <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+                                <div class="row register-form" >
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" name="title"   class="form-control" placeholder="{{jobsdata[0]?.title}}"
+                                            [(ngModel)]="jobs.title"    #title="ngModel"  >
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Requirements</label>
+                                            <textarea rows="3" cols="10" name="something" style="color:gray;" class="form-control"
+                                             placeholder="{{jobsdata[0]?.description}}"   
+                                             #description="ngModel" name="description" [(ngModel)]="jobs.description"  ></textarea>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                            <label for="title">Minimum experience</label>
+                                            <input type="text" name="something"class="form-control" placeholder="{{jobsdata[0]?.minexperience}}"
+                                                #minexperience="ngModel" [(ngModel)]="jobs.minexperience"  />  
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Minimum Salary Package</label>
+                                            <input type="text" name="something"class="form-control" placeholder="{{jobsdata[0]?.minsalary}}"
+                                                #minsalary="ngModel" [(ngModel)]="jobs.minsalary" />
+
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Maxmum Salary Package</label>
+                                            <input type="text" name="something"class="form-control" placeholder="{{jobsdata[0]?.maxsalary}}"
+                                               #maxsalary="ngModel"  [(ngModel)]="jobs.maxsalary" />
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                         <div class="form-group">
+                                            <label for="title">Job Description</label>
+                                            <textarea rows="3" cols="10" name="something" style="color:gray;" class="form-control"
+                                             placeholder="{{jobsdata[0]?.longdescription}}"   
+                                             #longdescription="ngModel" name="longdescription" [(ngModel)]="jobs.longdescription"  ></textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">Minimum qualification</label>
+                                            <input type="text"name="something" class="form-control" placeholder="{{jobsdata[0]?.minqualification}}"
+                                              #minqualification="ngModel" [(ngModel)]="jobs.minqualification"   >
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Company Name</label>
+                                            <input type="text"name="something" class="form-control" placeholder="{{jobsdata[0]?.cname}}"
+                                              #cname="ngModel"   [(ngModel)]="jobs.cname" >
+
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Contact Person Name</label>
+
+                                            <input type="text"name="something" class="form-control" placeholder="{{jobsdata[0]?.cpname}}"
+                                              #cpname="ngModel"  [(ngModel)]="jobs.cpname"  >
+                                            
+                                        </div>
+
+                                        
+                                        <div class="form-group">
+                                            <label for="title">Contact Person Phone</label>
+                                            <input type="text"name="something" minlength="10" maxlength="10"  placeholder="{{jobsdata[0]?.phone}}"
+                                             class="form-control" id="phone" #phone="ngModel" [(ngModel)]="jobs.phone"
+                                                 />
+                                            
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">Job Location</label>
+                                            <input type="text" name="something" class="form-control" [(ngModel)]="jobs.location"
+                                            placeholder="{{jobsdata[0]?.location}}"
+                                               #location="ngModel"  >
+                                            
+                                        </div>
+                                        <button class="btnRegister" type="reset">Cancel</button>
+                                        <button  class="btnRegister" >Edit</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+            </body>
+            <app-footer></app-footer>

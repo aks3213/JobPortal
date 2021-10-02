@@ -1,0 +1,43 @@
+<app-navigation-bar></app-navigation-bar>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="abc">
+<div class="register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                    </div>
+                    
+                    <div class="col-md-9 register-right" >
+                                <h3 class="register-heading" *ngIf="!error">Login</h3>
+                                <div class="row register-form" *ngIf="!error">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input #inputEmail type="text" name="email" class="form-control" placeholder="Email*" required email>
+                                        <button type="submit" class="btnRegister" (click)="loginUsers(inputEmail.value,inputPassword.value)">login</button>
+                                    </div>
+                                    </div>
+                                       
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input #inputPassword type="password" name="password" class="form-control" placeholder="Password*" required >
+                                            <input type="reset" class="btnRegister"  value="Reset"/>
+                                        </div>
+                                    </div><br><br>
+                                    <p> <a routerLink="/forgotpassword">Forgot Password?</a> <br></p> &nbsp; &nbsp; 
+                                    <p>New user?? Sign Up <a routerLink="/employerRegister">here</a></p>
+                                </div>
+                                <div *ngIf="error" class="error">
+                                    <p>Invalid Email or Password!!!</p><br>
+                                    <a class="btn btn-primary" (click)="againloginUsers()">Login Again</a>
+                                </div>
+                    </div>
+                
+                    
+                </div>
+</div>
+            </div>
+            <app-footer></app-footer>

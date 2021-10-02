@@ -1,0 +1,114 @@
+<app-navigation-bar></app-navigation-bar>
+
+<body>
+  
+    <div class="table-responsive-lg">
+        <table class="table table-hover ">
+            <thead class="thead-dark">
+            <tr >
+              
+              <th>
+                 Job title 
+              </th>
+              <th>
+                Job description 
+              </th>
+              <th>
+                Minimum Experience 
+             </th>
+             
+             <th>
+                Minimum Salary 
+             </th>
+             <th>
+               Maximum Salary
+             </th>
+             <th>
+                Location 
+             </th>
+             <th>
+               Minimum Qualification
+             </th>
+             <th>
+                Company Name 
+             </th>
+             <th>
+               Company Person Name
+             </th>
+             <th>
+                Company Person Phone No.
+              </th>
+              <th>
+                Vacancy
+              </th>
+              <th>
+
+              </th>
+              <th>
+
+              </th>
+              <th>
+                
+              </th>
+              
+            </tr>
+        </thead>
+            <tr *ngFor="let job of jobsdata">
+               
+                <td> {{job.title}} </td>
+               
+               
+                <td> {{job.description}} </td>
+               
+               
+                <td> {{job.minexperience}} </td>
+               
+               
+                
+               
+               
+                <td> {{job.minsalary}} </td>
+               
+               
+                <td> {{job.maxsalary}} </td>
+               
+               
+                <td> {{job.location}} </td>
+               
+               
+                <td> {{job.minqualification}} </td>
+               
+               
+                <td> {{job.cname}} </td>
+               
+               
+                <td> {{job.cpname}} </td>
+               
+              
+                <td> {{job.phone}} </td>
+
+                <td> {{job.vacancy}} </td>
+
+                <td>
+                  <a  class="btn btn-secondary" [routerLink]="['/EditJob',job._id]">
+                    Edit
+                </a>
+                </td>
+
+                <td>
+                  <a  class="btn btn-primary" [routerLink]="['/MyEmployes',job._id]">
+                    My Employes
+                </a>
+                </td>
+
+                <td>
+                  <a  class="btn btn-danger" (click)="confirmm(job._id)">
+                    Delete
+                </a>
+                </td>
+               
+            </tr>
+          </table>
+    </div>
+</body>
+<app-footer></app-footer>

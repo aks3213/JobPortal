@@ -1,0 +1,85 @@
+
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Employes</h3>
+                                
+                                <div class="col-md-9" >
+                                <div class="row register-form" >
+
+                                        <div class="card" style="width: 25rem;" *ngFor="let job of jobsdata" >
+                                            
+                                            <div class="card-body" >
+                                              
+                                              
+                                              <p class="card-text" *ngIf="job.type==1"><b>Email: </b>{{job.jemail}}</p>
+                                              
+                                              <a  class="btn btn-primary text-white" (click)="showDetails('custom-modal-1',job.jemail)" *ngIf="job.type==1">User Details</a> &nbsp;
+
+                                              <p class="card-text" *ngIf="job.type==0"><b>Email: </b>{{job.email}}</p>
+                                              
+                                              <a  class="btn btn-primary text-white" (click)="showDetails('custom-modal-1',job.email)"  *ngIf="job.type==0">User Details</a>&nbsp;
+                                            
+                                              <!--<a  class="btn btn-danger text-white" (click)="showDetails('custom-modal-1',job.jemail)" *ngIf="job.type==1">Fire</a>
+
+                                              <a  class="btn btn-danger text-white" (click)="showDetails('custom-modal-1',job.email)"  *ngIf="job.type==0">Fire</a>-->
+                                            
+                                            
+                                            </div>
+
+                                          </div>
+
+                                          <jw-modal id="custom-modal-1">
+                                            <div class="card-body" *ngFor="let user of userdata">
+                                                <h5 class="card-title"><b>{{user.firstname}} {{user.lastname}}</b></h5>
+                                                
+                                                <p class="card-text">Gender: {{user.gender}}</p>
+                                                <p class="card-text">Contact No: {{user.phone}}</p>
+                                                <p class="card-text">Degree: {{user.study}}</p>
+                                                
+                                                <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating>({{currentRate1}})
+
+                                                <button type="submit"  (click)="submitratting(user.email)" class="btn btn-primary btn-sm text-white" 
+                                                value="submit">submit</button><br>
+
+                                                <button (click)="closeModal('custom-modal-1');" class="btn btn-danger btn-sm text-white">Close</button>
+                                              </div>
+                                            
+                                          </jw-modal>
+                                        
+                                </div>
+
+                            </div>
+                               
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div></div>
+            </body>
+            <app-footer></app-footer>

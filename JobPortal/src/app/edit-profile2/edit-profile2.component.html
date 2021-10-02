@@ -1,0 +1,340 @@
+
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+                        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Edit Profile</h3>
+                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                                <div class="row register-form" *ngIf="!error" >
+                                    <div class="col-md-6">
+                                        <label for="firstname">Account Type:</label> <br><br>
+                                        <label for="lastname">Company Name:</label>  <br> <br>
+                                        <label for="lastname">Contact Person Name:</label>  <br> <br>
+                                        <label for="email">Email:</label>  <br> <br>
+                                        <label for="phone">Mobile No:</label>  <br> <br>
+                                        <label for="country">Country:</label>  <br> <br>
+                                        <label for="state">State:</label>  <br> <br>
+                                        <label for="study">City:</label>  <br> <br>
+                                        <label for="study">Designation:</label>  <br> <br>
+                                        <label for="gender">Requirements:</label>  <br> <br><br><br>
+                                        <label for="question">Question:</label>  <br> <br>
+                                        <label for="answer">Answer:</label> <br> <br>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group" >
+                                            <select class="form-control" name="accounttype" #accounttype="ngModel" value="{{myArr[2]}}" [(ngModel)]="registerUserData.accounttype" [ngClass]="{ 'is-invalid': f.submitted && accounttype.invalid }" required>
+                                            <option  selected="selected" disabled>Account Type</option>
+                                            <option >Employers/Corporates</option>
+                                            <option >Manpower Consultants</option>
+                                            <option >Colleges/Universities</option>
+                                            <option >Training Institutes</option>
+                                            <option >Educational Consultants</option>
+                                            <option >Ad Agencies/Affiliates</option>
+                                            <option >JobSeeker</option>
+                                            <option >Others</option>
+                                            </select>	
+                                            <div *ngIf="f.submitted && accounttype.invalid" class="invalid-feedback">
+                                                <div *ngIf="accounttype.errors?.required">Accounttype is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Company Name *" name="cname" value="{{myArr[3]}}" #cname="ngModel" [(ngModel)]="registerUserData.cname" [ngClass]="{ 'is-invalid': f.submitted && cname.invalid }" required>
+                                            <div *ngIf="f.submitted && cname.invalid" class="invalid-feedback">
+                                                <div *ngIf="cname.errors?.required">Company Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Contact Person Name *" value="{{myArr[4]}}" name="cpname" #cpname="ngModel" [(ngModel)]="registerUserData.cpname" [ngClass]="{ 'is-invalid': f.submitted && cpname.invalid }" required>
+                                            <div *ngIf="f.submitted && cpname.invalid" class="invalid-feedback">
+                                                <div *ngIf="cpname.errors?.required">Contact Person Name is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-control" value="{{myArr[5]}}"  [(ngModel)]="registerUserData.email" placeholder="Email*" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                <div *ngIf="email.errors?.required">Email is required</div>
+                                                <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="phone" value="{{myArr[6]}}" [pattern]="mobNumberPattern" class="form-control" id="phone" #phone="ngModel" placeholder="Your Phone *" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" [(ngModel)]="registerUserData.phone"required />
+                                            <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+                                                <div *ngIf="phone.errors?.required">phone is required</div>
+                                                <div *ngIf="phone.errors?.pattern">Phone Number must be a valid.(10 digit)</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select  #country="ngModel" [(ngModel)]="registerUserData.country" name="country" value="{{myArr[7]}}" (change)="onSelectCountry($any($event.target).value)" class="form-control input-lg" id="country">
+                                                <option selected="selected" disabled >Select Country</option>
+                                                <option *ngFor="let country of countriesList" value= {{country.name}}>{{country.name}}</option>
+                                                </select>  
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <select *ngIf="states"  name="state" #state="ngModel" value="{{myArr[8]}}" [(ngModel)]="registerUserData.state" 
+                                            (change)="onSelectState($any($event.target).value)" class="form-control input-lg" id="state">
+                                                <option selected="selected" disabled >Select State</option>
+                                              <option *ngFor="let state of states" value= {{state.name}}>{{state.name}}</option>
+                                            </select>  
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <select class="form-control input-lg" name="city" #city="ngModel" value="{{myArr[9]}}" [(ngModel)]="registerUserData.city"  id="city">
+                                                <option selected="selected" disabled >Select City</option>
+                                                <option *ngFor="let city of cities" value= {{city.name}}>{{city.name}}</option>
+                                            </select> 
+                                          </div>
+
+                                        <div class="form-group">
+                                            <select  class="form-control" name="designation" #designation="ngModel" value="{{myArr[10]}}" [(ngModel)]="registerUserData.designation" [ngClass]="{ 'is-invalid': f.submitted && designation.invalid }" required>
+                                                <option selected="selected" disabled>Designation</option>
+                                                <option >Accounts - Finance</option>
+                                                <option >Assistant Director – HR / Talent Acquisition</option>
+                                                <option >Assistant Manager HR</option>
+                                                <option >Associate Director HR</option>
+                                                <option >Asst Manager Recruitment</option>
+                                                <option >Asst. General Manager</option>
+                                                <option >BDM</option>
+                                                <option >Business head</option>
+                                                <option >Campus - Recruiter</option>
+                                                <option >CEO</option>
+                                                <option >Chairman</option>
+                                                <option >Co-Founder</option>
+                                                <option >COO</option>
+                                                <option >Corporate HR</option>
+                                                <option >Deputy General Manager - HR</option>
+                                                <option >Director</option>
+                                                <option >Director - HR</option>
+                                                <option >Founder</option>
+                                                <option >General Manager - (GM) HR</option>
+                                                <option >General Manager (GM)</option>
+                                                <option >Head - Talent Acquisition</option>
+                                                <option >Head HR</option>
+                                                <option >Head Talent Acquisition</option>
+                                                <option >HR Admin</option>
+                                                <option >HR Business Partner</option>
+                                                <option >HR Executive</option>
+                                                <option >HR Lead</option>
+                                                <option >HR Leader</option>
+                                                <option >HR Officer</option>
+                                                <option >HR Professional</option>
+                                                <option >HR- Recruiter</option>
+                                                <option >HR Specialist</option>
+                                                <option >IT Director</option>
+                                                <option >IT Recruiter</option>
+                                                <option >Manager - Campus Recruitment</option>
+                                                <option >Manager - HR</option>
+                                                <option >Manager - Recruitment</option>
+                                                <option >Manager - Talent Acquisition</option>
+                                                <option >Manager - University Relations</option>
+                                                <option >Manager-Corp HR</option>
+                                                <option >Managing Director (MD)</option>
+                                                <option >Managing Partner</option>
+                                                <option >Marketing Manager</option>
+                                                <option >Placement Officer (TPO)</option>
+                                                <option >President HR</option>
+                                                <option >Procurement</option>
+                                                <option >Product Manager</option>
+                                                <option >Receptionist</option>
+                                                <option >Recruiter</option>
+                                                <option >Recruitment Associate</option>
+                                                <option >Recruitment Consultant</option>
+                                                <option >Recruitment Executive</option>
+                                                <option >Recruitment Lead</option>
+                                                <option >Recruitment Specialist</option>
+                                                <option >Regional Director</option>
+                                                <option >Regional Manager HR</option>
+                                                <option >Resource Manager</option>
+                                                <option >Senior Executive - HR</option>
+                                                <option >Senior Executive - Talent Acquisition</option>
+                                                <option >Senior Manager - HR</option>
+                                                <option >Senior Manager - Recruitment</option>
+                                                <option >Senior Manager - Talent Acquisition</option>
+                                                <option >Senior VP- HR</option>
+                                                <option >Sr.Technical Recruiter</option>
+                                                <option >Technical Recruiter</option>
+                                                <option >Training manager</option>
+                                                <option >University Relations</option>
+                                                <option >Vice President (VP)</option>
+                                                <option >Vice President (VP)- HR</option>
+                                                <option  >Others</option>
+                                                </select>
+                                                <div *ngIf="f.submitted && designation.invalid" class="invalid-feedback">
+                                                    <div *ngIf="designation.errors?.required">Designation is required</div>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <textarea rows="3" cols="10" style="color:gray;" class="form-control" value="{{myArr[11]}}" placeholder="Give a brief about your Entry Level Hiring Requirements here." name="requirements" #requirements="ngModel" [(ngModel)]="registerUserData.requirements" name="clientrequirements"[ngClass]="{ 'is-invalid': f.submitted && requirements.invalid }" required></textarea>
+                                            
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" value="{{myArr[12]}}" #question="ngModel" [(ngModel)]="registerUserData.question" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required>
+                                                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is your Favorite Food?</option>
+                                                <option>What is your Favorite Movie?</option>
+                                                <option>What is Your Nick Name?</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                            <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                                <div *ngIf="question.errors?.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Your Answer *" value="{{myArr[13]}}" name="answer" id="answer" #answer="ngModel" [(ngModel)]="registerUserData.answer" [ngClass]="{ 'is-invalid': f.submitted && answer.invalid }" required/>
+                                            <div *ngIf="f.submitted && answer.invalid" class="invalid-feedback">
+                                                <div *ngIf="answer.errors?.required">Answer is required</div>
+                                            </div>
+                                        </div>
+
+                                        <button class="btnRegister" type="reset">Cancel</button>
+                                        <button  class="btnRegister"  >Update</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                  <!--  <div class="col-md-9 register-right" *ngIf="uemployer">
+                        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Edit Profile</h3>
+                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                                <div class="row register-form" *ngIf="!error" >
+                                    <div class="col-md-6">
+                                        <label for="firstname">Fisrt Name:</label> <br><br>
+                                        <label for="lastname">Last Name:</label>  <br> <br>
+                                        <label for="email">Email:</label>  <br> <br>
+                                        <label for="gender">Gender:</label>  <br> <br>
+                                        <label for="phone">Mobile No:</label>  <br> <br>
+                                        <label for="study">Qualification:</label>  <br> <br>
+                                        <label for="question">Question:</label>  <br> <br>
+                                        <label for="answer">Answer:</label> <br> <br>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <input type="text" name="firstname" class="form-control"  value="{{myArr[2]}}" [(ngModel)]="registerUserData.firstname" #firstname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstname.invalid }" required>
+                                            <div *ngIf="f.submitted && firstname.invalid" class="invalid-feedback">
+                                                <div *ngIf="firstname.errors?.required">First Name is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[3]}}" name="lastname"  [(ngModel)]="registerUserData.lastname" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required/>
+                                            <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                                                <div *ngIf="lastName.errors?.required">Last Name is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-control" [(ngModel)]="registerUserData.email" value="{{myArr[9]}}" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                <div *ngIf="email.errors?.required">Email is required</div>
+                                                <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label>Gender :</label>&nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="male" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Male </span> 
+                                                </label> &nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="female" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Female </span> 
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                                                Gender is required
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="phone" [pattern]="mobNumberPattern" value="{{myArr[5]}}" class="form-control" id="phone" #phone="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" [(ngModel)]="registerUserData.phone"required />
+                                            <div *ngIf="f.submitted && phone.invalid " class="invalid-feedback">
+                                                <div *ngIf="phone.errors?.required">phone is required</div>
+                                                <div *ngIf="phone.errors?.pattern ">Phone Number must be a valid.(10 digit)</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  value="{{myArr[8]}}" id="study" name="study" #study="ngModel" [ngClass]="{ 'is-invalid': f.submitted && study.invalid }" [(ngModel)]="registerUserData.study"required />
+                                            <div *ngIf="f.submitted && study.invalid" class="invalid-feedback">
+                                                <div *ngIf="study.errors?.required">Qualification is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" #question="ngModel" value="{{myArr[6]}}" [(ngModel)]="registerUserData.question" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required>
+                                                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is your Favorite Food?</option>
+                                                <option>What is your Favorite Movie?</option>
+                                                <option>What is Your Nick Name?</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                            <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                                <div *ngIf="question.errors?.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[7]}}" name="answer" id="answer" #answer="ngModel" [(ngModel)]="registerUserData.answer" [ngClass]="{ 'is-invalid': f.submitted && answer.invalid }" required/>
+                                            <div *ngIf="f.submitted && answer.invalid" class="invalid-feedback">
+                                                <div *ngIf="answer.errors?.required">Answer is required</div>
+                                            </div>
+                                        </div>
+                                        <button class="btnRegister" type="reset">Cancel</button>
+                                        <button  class="btnRegister"  >Update</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>-->
+
+                </div>
+                
+            </div></div>
+            </body>
+            <app-footer></app-footer>

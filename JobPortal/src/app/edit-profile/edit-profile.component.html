@@ -1,0 +1,239 @@
+<app-navigation-bar></app-navigation-bar>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../assets/js/jobseekerRegister.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+</head>
+<body>
+    <div class="abc">
+<div class="register">
+                <div class="row" >
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        
+                    </div>
+                    <div class="col-md-9 register-right" >
+                        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Edit Profile</h3>
+                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                                <div class="row register-form" *ngIf="!error" >
+                                    <div class="col-md-6">
+                                        <label for="firstname">Fisrt Name:</label> <br><br>
+                                        <label for="lastname">Last Name:</label>  <br> <br>
+                                        <label for="email">Email:</label>  <br> <br>
+                                        <label for="gender">Gender:</label>  <br> <br>
+                                        <label for="phone">Mobile No:</label>  <br> <br>
+                                        <label for="study">Qualification:</label>  <br> <br>
+                                        <label for="question">Question:</label>  <br> <br>
+                                        <label for="answer">Answer:</label> <br> <br>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <input type="text" name="firstname" class="form-control" placeholder="First Name *"  
+                                            value="{{myArr[2]}}" [(ngModel)]="registerUserData.firstname" #firstname="ngModel" 
+                                            [ngClass]="{ 'is-invalid': f.submitted && firstname.invalid }" required>
+                                            <div *ngIf="f.submitted && firstname.invalid" class="invalid-feedback">
+                                                <div *ngIf="firstname.errors?.required">First Name is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[3]}}" name="lastname" placeholder="Last Name *" [(ngModel)]="registerUserData.lastname" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required/>
+                                            <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                                                <div *ngIf="lastName.errors?.required">Last Name is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-control" [(ngModel)]="registerUserData.email"  placeholder="Email*" value="{{myArr[9]}}" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                <div *ngIf="email.errors?.required">Email is required</div>
+                                                <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label>Gender :</label>&nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="male" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Male </span> 
+                                                </label> &nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="female" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Female </span> 
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                                                Gender is required
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="phone" [pattern]="mobNumberPattern" placeholder="Your Phone *" value="{{myArr[5]}}" class="form-control" id="phone" #phone="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" [(ngModel)]="registerUserData.phone"required />
+                                            <div *ngIf="f.submitted && phone.invalid " class="invalid-feedback">
+                                                <div *ngIf="phone.errors?.required">phone is required</div>
+                                                <div *ngIf="phone.errors?.pattern ">Phone Number must be a valid.(10 digit)</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  value="{{myArr[8]}}" id="study" name="study" placeholder="Highest Qualification *" #study="ngModel" [ngClass]="{ 'is-invalid': f.submitted && study.invalid }" [(ngModel)]="registerUserData.study"required />
+                                            <div *ngIf="f.submitted && study.invalid" class="invalid-feedback">
+                                                <div *ngIf="study.errors?.required">Qualification is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" #question="ngModel" value="{{myArr[6]}}" [(ngModel)]="registerUserData.question" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required>
+                                                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is your Favorite Food?</option>
+                                                <option>What is your Favorite Movie?</option>
+                                                <option>What is Your Nick Name?</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                            <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                                <div *ngIf="question.errors?.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[7]}}" name="answer" id="answer" placeholder="Enter Your Answer *" #answer="ngModel" [(ngModel)]="registerUserData.answer" [ngClass]="{ 'is-invalid': f.submitted && answer.invalid }" required/>
+                                            <div *ngIf="f.submitted && answer.invalid" class="invalid-feedback">
+                                                <div *ngIf="answer.errors?.required">Answer is required</div>
+                                            </div>
+                                        </div>
+                                        <button class="btnRegister" type="reset">Cancel</button>
+                                        <button  class="btnRegister"  >Update</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                  <!--  <div class="col-md-9 register-right" *ngIf="uemployer">
+                        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Edit Profile</h3>
+                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                                <div class="row register-form" *ngIf="!error" >
+                                    <div class="col-md-6">
+                                        <label for="firstname">Fisrt Name:</label> <br><br>
+                                        <label for="lastname">Last Name:</label>  <br> <br>
+                                        <label for="email">Email:</label>  <br> <br>
+                                        <label for="gender">Gender:</label>  <br> <br>
+                                        <label for="phone">Mobile No:</label>  <br> <br>
+                                        <label for="study">Qualification:</label>  <br> <br>
+                                        <label for="question">Question:</label>  <br> <br>
+                                        <label for="answer">Answer:</label> <br> <br>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <input type="text" name="firstname" class="form-control"  value="{{myArr[2]}}" [(ngModel)]="registerUserData.firstname" #firstname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstname.invalid }" required>
+                                            <div *ngIf="f.submitted && firstname.invalid" class="invalid-feedback">
+                                                <div *ngIf="firstname.errors?.required">First Name is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[3]}}" name="lastname"  [(ngModel)]="registerUserData.lastname" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required/>
+                                            <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                                                <div *ngIf="lastName.errors?.required">Last Name is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-control" [(ngModel)]="registerUserData.email" value="{{myArr[9]}}" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                <div *ngIf="email.errors?.required">Email is required</div>
+                                                <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label>Gender :</label>&nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="male" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Male </span> 
+                                                </label> &nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="gender"  id="gender" value="female" #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" [(ngModel)]="registerUserData.gender" required>
+                                                    <span> Female </span> 
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                                                Gender is required
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="phone" [pattern]="mobNumberPattern" value="{{myArr[5]}}" class="form-control" id="phone" #phone="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" [(ngModel)]="registerUserData.phone"required />
+                                            <div *ngIf="f.submitted && phone.invalid " class="invalid-feedback">
+                                                <div *ngIf="phone.errors?.required">phone is required</div>
+                                                <div *ngIf="phone.errors?.pattern ">Phone Number must be a valid.(10 digit)</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  value="{{myArr[8]}}" id="study" name="study" #study="ngModel" [ngClass]="{ 'is-invalid': f.submitted && study.invalid }" [(ngModel)]="registerUserData.study"required />
+                                            <div *ngIf="f.submitted && study.invalid" class="invalid-feedback">
+                                                <div *ngIf="study.errors?.required">Qualification is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" #question="ngModel" value="{{myArr[6]}}" [(ngModel)]="registerUserData.question" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required>
+                                                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is your Favorite Food?</option>
+                                                <option>What is your Favorite Movie?</option>
+                                                <option>What is Your Nick Name?</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                            <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                                <div *ngIf="question.errors?.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{myArr[7]}}" name="answer" id="answer" #answer="ngModel" [(ngModel)]="registerUserData.answer" [ngClass]="{ 'is-invalid': f.submitted && answer.invalid }" required/>
+                                            <div *ngIf="f.submitted && answer.invalid" class="invalid-feedback">
+                                                <div *ngIf="answer.errors?.required">Answer is required</div>
+                                            </div>
+                                        </div>
+                                        <button class="btnRegister" type="reset">Cancel</button>
+                                        <button  class="btnRegister"  >Update</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>-->
+
+                </div>
+                </div>
+            </div>
+            </body>
+            <app-footer></app-footer>

@@ -1,0 +1,164 @@
+<app-navigation-bar></app-navigation-bar>
+<html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+    <div class="abc">
+
+
+
+        <div class="register">
+            <div class="row">
+                <div class="col-md-2 register-left">
+                    <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                    <h3>Welcome</h3>
+                </div>
+
+                <div class="col-md-10 register-right" *ngIf="ujobseeker">
+                    <h3 class="register-heading">Hello!! <b> {{fname}} {{lname}} </b></h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                          <h5>  Recently Added Jobs</h5>
+                            <div *ngFor="let job of jobsdata">
+                                <div class="card" *ngIf="job.vacancy>0" style="width: auto; height: auto;">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>{{job.title}}</b></h5>
+                                        <p class="card-text"><b>Company Name:</b>{{job.cname}}</p>
+                                        <p class="card-text">salary: {{job.minsalary}}-{{job.maxsalary}}</p>
+                                        <p class="card-text">Location: {{job.location}}</p>
+
+                                        <p class="card-text"><b>Vacancy </b>{{job.vacancy}}</p>
+
+                                        <a class="btn btn-secondary text-white" [routerLink]="['/job',job._id]">View
+                                            Job</a> &nbsp;
+                                        <a class="btn btn-primary text-white"
+                                            [routerLink]="['/ApplyForJob',job._id]">Apply</a>
+                                    </div>
+                                    
+
+                                </div><br>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5>  &nbsp;</h5>
+                            <div class="card"  style="width: auto; height: auto;">
+
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Explore</b></h5>
+                                    <p class="card-text">Search Job
+                                        <a routerLink='/SearchJobs' class="btn btn-primary btn-sm "> here</a></p>
+
+                                    <p class="card-text">Make Resume
+                                        <a routerLink='/CreateResume' class="btn btn-primary btn-sm"> here</a></p>
+
+                                    
+                                </div>
+                                
+
+                            </div>
+                          
+                        </div>
+
+                        <div class="col-xl-20">
+                           <h5> <p><b> <br> All our dreams can come true
+                                if we have the courage to pursue them. -Walt Disney</b></p></h5>
+
+                                
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-10 register-right" *ngIf="uemployer">
+                    <h3 class="register-heading">Hello!! <b> {{cpname}} </b></h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <h5>  Recently Added Jobs</h5>
+                            <div *ngFor="let job of jobsdata">
+                                <div class="card" *ngIf="job.vacancy>0" style="width: auto; height: auto;">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>{{job.title}}</b></h5>
+                                        <p class="card-text"><b>Company Name:</b>{{job.cname}}</p>
+                                        <p class="card-text">salary: {{job.minsalary}}-{{job.maxsalary}}</p>
+                                        <p class="card-text">Location: {{job.location}}</p>
+
+                                        <p class="card-text"><b>Vacancy </b>{{job.vacancy}}</p>
+
+                                        <a class="btn btn-secondary text-white" [routerLink]="['/job',job._id]">View
+                                            Job</a>
+                                    </div>
+                                    
+
+                                </div><br>
+                            </div>
+                            <p>
+                                Add Your Job
+                            
+                            <a class="btn btn-secondary btn-sm text-white" routerLink='/addJob'>Here</a></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            
+                            <h5>  &nbsp;</h5>
+                            <div class="card"  style="width: auto; height: auto;">
+
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Explore</b></h5>
+                                    <p class="card-text">Search Resume
+                                        <a routerLink='/SearchResume' class="btn btn-primary btn-sm "> here</a></p>
+
+                                    <p class="card-text">Search User
+                                        <a routerLink='/FindUser' class="btn btn-primary btn-sm"> here</a></p>
+
+                                    
+                                </div>
+                                
+
+                            </div>
+                        </div>
+
+                        <div class="col-xl-20">
+                            <h5> <p><b> <br> All our dreams can come true
+                                 if we have the courage to pursue them. -Walt Disney</b></p></h5>
+                         </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-10 register-right" *ngIf="admin">
+                    <h3 class="register-heading">Hello!! Admin</h3>
+                    <div class="row register-form">
+                        
+
+
+                        <div class="col-xl-20">
+                            <h5> <p><b> <br> All our dreams can come true
+                                 if we have the courage to pursue them. -Walt Disney</b></p></h5>
+ 
+                                 
+                         </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+<app-footer></app-footer>

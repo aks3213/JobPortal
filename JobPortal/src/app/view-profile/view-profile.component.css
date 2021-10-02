@@ -1,0 +1,23 @@
+
+
+.error{
+    padding-top: 8%;
+    padding-left: 35%;
+}
+
+.register-heading-admin{
+    text-align: center;
+    margin-top: 20%;
+    margin-bottom: -15%;
+    color: #1d16e7;
+}
+
+ngb-rating {
+    font-size: 23px;
+    color:#FF9529
+    /*background: rgba(23, 221, 16, 0.815);*/
+}
+
+video{
+    padding-top: 10px;
+}

@@ -1,0 +1,279 @@
+GET http://localhost:3000
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "user":{"usertype": "1",
+    "firstname": "Deep",
+    "lastname": "Mer",
+    "gender": "male",
+    "phone":"8306490904",
+    "question": "What is your Favorite Food?",
+    "answer": "Pizza",
+    "study":"CA",
+    "email": "deepmer2001@gmail.com",
+    "password": "Deep@123"}
+}
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "usertype": "0",
+    "email": "admin123@gmail.com",
+    "password": "admin123"
+}
+
+###
+POST http://localhost:3000/users/loginEmployer
+Content-Type: application/json
+
+{   
+        "email": "reset@gmail.com",
+        "password": "aaabbbaaa"
+}
+
+###
+POST http://localhost:3000/users/loginJS
+Content-Type: application/json
+
+{   
+        "email": "yagnikchhayani2001@gmail.com",
+        "password": "Darshan@123"
+}
+
+###
+POST http://localhost:3000/admins/login
+Content-Type: application/json
+
+{   
+        "email": "admin123@gmail.com",
+        "password": "admin123"
+}
+
+
+###
+POST http://localhost:3000/employer/jobs
+Content-Type: application/json
+
+{
+    "title": "SvDE"
+}
+
+###
+GET http://localhost:3000/employer/jobs
+
+
+###
+GET http://localhost:3000/jbusers
+
+###
+GET http://localhost:3000/eusers
+
+###
+POST  http://localhost:3000/user/forgotpassword
+Content-Type: application/json
+
+{   
+        "email": "darshanbhuva1406@gmail.com",
+        "question": "What is your Favorite Food?",
+        "answer": "pizza"
+}
+
+###
+POST  http://localhost:3000/user/resetpassword
+Content-Type: application/json
+
+{   
+        "email": "akshaybhanderi@gmail.com",
+        "password": "Akshay@123"
+}
+
+###
+POST  http://localhost:3000/user/editprofile
+Content-Type: application/json
+
+{   
+        "_id":"601cecf003451a2b0c7b934a",
+        "firstname": "dar",
+        "lastname": "gd",
+        "gender": "male",
+        "phone":"9626541349",
+        "question": "What is your Favorite Food?",
+        "answer": "wsdf",
+        "study":"asd",
+        "email": "darshanbhuva000@gmail.com"
+}
+
+
+###
+POST  http://localhost:3000/resume/create
+Content-Type: application/json
+
+{   
+        "Name": "darshanbhuva57@gmail.com",
+        "CurrentCity": "Darshan@123"
+}
+
+###
+GET http://localhost:3000/employer/getuserid
+
+###
+POST  http://localhost:3000/mailnotification
+Content-Type: application/json
+
+{   
+        "email": "darshanbhuva57@gmail.com",
+        "description": "Darshan@123",
+        "subject": "Darshan@123"
+}
+
+###
+POST  http://localhost:3000/faq/question
+Content-Type: application/json
+
+{   
+        "Question": "darshanbhuva57@gmail.com"
+}
+
+###
+GET http://localhost:3000/faq/answer
+
+###
+POST  http://localhost:3000/faq/addanswer
+Content-Type: application/json
+
+{   
+        "_id": "60300c633f4e1b1414518c7f",
+        "Answer": "darshanbhuva57@gmail.com"
+}
+
+###
+GET http://localhost:3000/user/6014f19927a2fb412cd85dd8
+
+###
+GET http://localhost:3000/job/6014f19927a2fb412cd85dd8
+
+###
+GET http://localhost:3000/resume/view
+
+###
+GET http://localhost:3000/resume/6038dd5382725147d42b2f25
+
+###
+POST  http://localhost:3000/resume/search
+Content-Type: application/json
+
+{   
+        "searchText": "45"
+}
+
+###
+PATCH   http://localhost:3000/resume/edit
+Content-Type: application/json
+
+{   
+        "_id": "6038dd5382725147d42b2f25",
+        "Name": "darshanbhuvaaa",
+        "email": "darshanbhuva57@gmail.com"
+}
+
+
+###
+GET http://localhost:3000/resumes/601cecf003451a2b0c7b934a
+
+
+###
+POST  http://localhost:3000/job/search
+Content-Type: application/json
+
+{   
+        "searchText": "asd"
+}
+
+###
+GET http://localhost:3000/jobs/6030adb0c8b7eb2d48f43f34
+
+
+
+###
+POST  http://localhost:3000/Notification/Hire
+Content-Type: application/json
+
+{   
+        "Description" : "hello world!!",
+        "email" : "darshanbhuva57@gmail.com"
+        
+}
+
+//601cecf003451a2b0c7b934a
+
+###
+GET  http://localhost:3000/Notification/darshanbhuva57@gmail.com
+
+###
+PATCH   http://localhost:3000/Notification/Accept
+Content-Type: application/json
+
+{   
+        "Answer": true,
+        "email": "ashaybhanderi@gmail.com",
+        "jemail": "57darshanbhuva@gmail.com",
+        "job": "6030adb0c8b7eb2d48f43f34",
+        "_id": "604a57770c246d2674422511"
+}
+
+###
+PATCH   http://localhost:3000/Notification/AcceptApply
+Content-Type: application/json
+
+{   
+        "Answer": true,
+        "email": "57darshanbhuva@gmail.com",
+        "jemail": "darshanbhuva57@gmail.com",
+        "job": "6031d4229ecefd2244a298d2",
+        "_id": "604779bc2e53180fbc2b74b2"
+}
+
+
+###
+GET  http://localhost:3000/Notification/Apply/57darshanbhuva@gmail.com
+
+
+
+###
+PATCH   http://localhost:3000/ratting/update/57darshanbhuva@gmail.com
+Content-Type: application/json
+
+{   
+        "uid": "yagnikchhayani20000@gmail.com",
+        "Ratting": 4
+}
+
+###
+GET http://localhost:3000/ratting/get
+
+###
+GET http://localhost:3000/ratting/viewjobs/darshanbhuva57@gmail.com
+
+
+###
+GET http://localhost:3000/home/resume
+
+
+###
+GET http://localhost:3000/home/job
+
+
+###
+POST  http://localhost:3000/test
+Content-Type: application/json
+
+{   
+        "email": "darshanbhuva57@gmail.com"
+}
+
+
