@@ -81,14 +81,7 @@ export class AuthService {
     getUser(){
       return this.webService.getUser();
     }
-
-   /* getUser(): Observable<Ijobseeker[]>{
-      return this.http.get<Ijobseeker[]>(this.user)
-    //  .pipe(map(r => { console.log(r); return this.extractData }))
-    }*/
-  
-
-    
+ 
 
     getUsers(){
       return this.webService.getUsers();

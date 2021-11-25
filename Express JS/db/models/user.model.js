@@ -73,7 +73,6 @@ UserSchema.methods.generateAccessAuthToken = function () {
             if (!err) {
                 resolve(token);
             } else {
-                // there is an error
                 reject();
             }
         })
